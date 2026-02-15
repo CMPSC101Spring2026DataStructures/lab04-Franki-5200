@@ -1,7 +1,7 @@
 
 # Basic Rock Paper Scissors Game
-# Name: Add Your Name Here
-# Date: Add The Date Here
+# Name: Francesca Hoh
+# Date: 2/15/26
 
 import random
 
@@ -35,16 +35,27 @@ console = Console()
 choices = ['rock', 'paper', 'scissors']
 num_to_choice = {'1': 'rock', '2': 'paper', '3': 'scissors'}
 
-# TODO: Implement this function to get and validate the user's choice.
 def get_user_choice():
 	"""Prompt the user for their choice and return 'rock', 'paper', or 'scissors'."""
-	# TODO: Use console.input and validate input (accept 1/2/3 or words)
-	pass
+	print(f"Options: {choices}")
+	print(num_to_choice)
+	user_choice = console.input("Chose one")
 
-# TODO: Implement this function to randomly select the computer's choice.
+	while True:
+         if user_choice == "1" or user_choice == "2" or user_choice == "3":
+		    return user_choice
+		else:
+            user_choice = console.input("")
+
+ 
+
+
 def get_computer_choice():
 	"""Randomly return 'rock', 'paper', or 'scissors'."""
-	pass
+	computer_choice = random.choice(choices)
+	return computer_choice
+
+
 
 # TODO: Implement this function to determine the winner of a round.
 def determine_winner(user_choice, computer_choice):
@@ -64,6 +75,8 @@ def main():
 	rounds = 3
 	for round_num in range(1, rounds + 1):
 		# TODO: Get user and computer choices
+		get_user_choice()
+		get_computer_choice()
 		# TODO: Determine winner
 		# TODO: Print round result
 		# TODO: Update scores
