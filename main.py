@@ -69,14 +69,15 @@ def determine_winner(user_choice, computer_choice):
 
 def print_round_result(user_choice, computer_choice, winner):
 	"""Print the choices and the winner of the round using rich colors."""
-	console.print("You chose: ", user_choice)
-	console.print("Computer chose: ", computer_choice)
+	console.print(f"You chose: [bold green]{user_choice}[/bold green]")
+	console.print(f"Computer chose: [bold green]{computer_choice}[/bold green]")
 	if winner == "user":
-		console.print("You won the round")
+		console.print("[bold green]You won the round[/bold green]")
 	elif winner == "computer":
-		console.print("Computer won this round")
+		console.print("[bold green]Computer won this round[/bold green]")
 	else:
-		console.print("It's a tie")
+		console.print("[bold green]It's a tie[/bold green]")
+		#add color
 
 
 def main():
@@ -93,7 +94,7 @@ def main():
 			user_score += 1
 		elif winner == "computer":
 			computer_score += 1
-
+#compute here
 	print("Player Score: ",  user_score, "Computer Score: ", computer_score)
 	if user_score > computer_score:
 		console.print("[bold green]Congratulations, you win the game![/bold green]")
