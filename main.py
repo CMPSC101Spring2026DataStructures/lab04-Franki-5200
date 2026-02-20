@@ -36,13 +36,13 @@ num_to_choice = {'1': 'rock', '2': 'paper', '3': 'scissors'}
 
 def get_user_choice():
 	"""Prompt the user for their choice and return 'rock', 'paper', or 'scissors'."""
-	print(f"Options: {choices}")
-	print(num_to_choice)
+	console.print(f"Options: {choices}")
+	console.print(num_to_choice)
 	user_choice = console.input("Chose one")
 
 	while True:
-		if user_choice == "1" or user_choice == "2" or user_choice == "3":
-			return user_choice
+		if user_choice in num_to_choice:
+			return num_to_choice[user_choice]
 		else:
 			user_choice = console.input("")
 
@@ -60,16 +60,23 @@ def get_computer_choice():
 def determine_winner(user_choice, computer_choice):
 	"""Return 'user', 'computer', or 'tie' based on the choices."""
 	if user_choice == computer_choice:
-		print("tie")
-	elif user_choice == "1" and computer_choice == 3 or user_choice == "2" and computer_choice == "1" or user_choice == "3" and computer_choice == "2":
-		user_score += 1
+		return "tie"
+	elif user_choice == "rock" and computer_choice == "scissors" or user_choice == "paper" and computer_choice == "rock" or user_choice == "scissors" and computer_choice == "paper":
+		return "user"
 	else:
-		computer_score += 1
+		return "computer"
 
-# TODO: Implement this function to print the round result with color.
+
 def print_round_result(user_choice, computer_choice, winner):
 	"""Print the choices and the winner of the round using rich colors."""
-	pass
+	console.print("You chose: ", user_choice)
+	console.print("Computer chose: ", computer_choice)
+	if winner == "user":
+		console.print("You won the round")
+	elif winner == "computer":
+		console.print("Computer won this round")
+	else:
+		console.print("It's a tie")
 
 
 def main():
@@ -78,17 +85,19 @@ def main():
 	computer_score = 0
 	rounds = 3
 	for round_num in range(1, rounds + 1):
-		get_user_choice()
-		get_computer_choice()
-		determine_winner(user_choice, computer_choice)
+		user_choice = get_user_choice()
+		computer_choice = get_computer_choice()
+		winner = determine_winner(user_choice, computer_choice)
 		print_round_result(user_choice, computer_choice, winner)
-		# TODO: Update scores
-		pass
-	print("Player Score: " + user_score + "Computer Score: " + computer_score)
+		if winner == "user":
+			user_score += 1
+		elif winner == "computer":
+			computer_score += 1
 
+	print("Player Score: ",  user_score, "Computer Score: ", computer_score)
+	if user_score > computer_score:
+		console.print("[bold green]Congratulations, you win the game![/bold green]")
 
 if __name__ == "__main__":
 	main()
-	if user_score > computer_score:
 
-		console.print("[bold green]Congratulations, you win the game![/bold green]")
